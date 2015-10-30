@@ -9,12 +9,11 @@ namespace HomeSecuritySystem
 {
     public class SystemDisplay : IDisplay
     {
+        private DisplayedItems _displayedItems;
+
         public DisplayedItems DisplayedItems
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return _displayedItems; }
         }
 
         public void ClearAlarmSound()

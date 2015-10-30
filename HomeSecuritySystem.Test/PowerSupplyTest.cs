@@ -21,7 +21,7 @@ namespace HomeSecuritySystem.Test
         public void TestPowerSupplyIsLowBattery()
         {
             PowerSupply power = new PowerSupply();
-            Assert.IsTrue(power.IsLowBattery);
+            Assert.IsFalse(power.IsLowBattery);
         }
     }
 }

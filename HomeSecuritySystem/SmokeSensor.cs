@@ -11,10 +11,6 @@ namespace HomeSecuritySystem
 {
     public class SmokeSensor : ISensor
     {
-        public SmokeSensor()
-        {
-        }
-
         public bool Detected
         {
             get

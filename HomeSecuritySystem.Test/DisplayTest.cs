@@ -11,7 +11,7 @@ namespace HomeSecuritySystem.Test
     public class DisplayTest
     {
         [TestMethod]
-        public void Test()
+        public void TestDisplay()
         {
             SystemDisplay display = new SystemDisplay();
         }

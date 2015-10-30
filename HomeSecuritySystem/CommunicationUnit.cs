@@ -9,10 +9,6 @@ namespace HomeSecuritySystem
 {
     public class CommunicationUnit : IComms
     {
-        public CommunicationUnit()
-        {
-        }
-
         public bool IsOn
         {
             get

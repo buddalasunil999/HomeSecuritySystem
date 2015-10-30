@@ -59,8 +59,10 @@
     <Compile Include="ControllerTest.cs" />
     <Compile Include="DisplayMock.cs" />
     <Compile Include="DisplayTest.cs" />
+    <Compile Include="PowerSupplyMock.cs" />
     <Compile Include="PowerSupplyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmokeSensorMock.cs" />
     <Compile Include="SmokeSensorTest.cs" />
     <Compile Include="MotionSensorTest.cs" />
     <Compile Include="SecurityAlarmTest.cs" />

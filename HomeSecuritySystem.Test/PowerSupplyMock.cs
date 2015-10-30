@@ -6,19 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using HomeSecuritySystem.Events;
 
-namespace HomeSecuritySystem
+namespace HomeSecuritySystem.Test
 {
-    public class PowerSupply : IPowerSupply
+    public class PowerSupplyMock : IPowerSupply
     {
-        public PowerSupply()
-        {
-        }
+        bool _isLowBattery;
 
         public bool IsLowBattery
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -26,8 +24,13 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return true;
+                throw new NotImplementedException();
             }
+        }
+
+        public PowerSupplyMock(bool isLowBattery)
+        {
+            _isLowBattery = isLowBattery;
         }
 
         public event NoPowerEvent OnNoPower;
