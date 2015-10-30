@@ -1,0 +1,6 @@
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\HomeSecuritySystem.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\HomeSecuritySystem.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\obj\Debug\HomeSecuritySystem.csprojResolveAssemblyReference.cache
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\obj\Debug\HomeSecuritySystem.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\obj\Debug\HomeSecuritySystem.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\Components.dll
