@@ -151,6 +151,8 @@ namespace HomeSecuritySystem.Test
             Assert.AreEqual(smokeSensor.Id, report.SensorId);
             Assert.AreEqual(smokeSensor.Type, report.SensorType);
             Assert.AreEqual(ReportType.Smoke, report.Type);
+
+            Assert.AreEqual(commsMock.Details, display.DisplayedItems.ReportDetail);
         }
 
         [TestMethod]
@@ -242,6 +244,25 @@ namespace HomeSecuritySystem.Test
             powerSupply.TriggerLowPower();
 
             Assert.IsTrue(display.DisplayedItems.PowerSupplyLowBattery);
+        }
+
+        [TestMethod]
+        public void WhenReportGenerated_Display()
+        {
+            controller = new SecurityController(sensors, commsMock, powerSupply, alarm, display);
+            powerSupply.TriggerLowPower();
+
+            var report = SecurityController.DeserializeJSON<Report.Report>(commsMock.Details);
+            Assert.AreEqual(ReportType.NoPower, report.Type);
+            Assert.AreEqual(commsMock.Details, display.DisplayedItems.ReportDetail);
+        }
+
+        [TestMethod]
+        public void WhenMemoryCleared_ClearReport_OnDisplay()
+        {
+            controller = new SecurityController(sensors, commsMock, powerSupply, alarm, display);
+            controller.ClearMemory();
+            Assert.IsTrue(string.IsNullOrEmpty(display.DisplayedItems.ReportDetail));
         }
     }
 }

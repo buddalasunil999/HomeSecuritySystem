@@ -58,7 +58,6 @@
     <Compile Include="CommunicationUnit.cs" />
     <Compile Include="CommunicationUnitMock.cs" />
     <Compile Include="ControllerTest.cs" />
-    <Compile Include="DisplayMock.cs" />
     <Compile Include="DisplayTest.cs" />
     <Compile Include="PowerSupplyMock.cs" />
     <Compile Include="PowerSupplyTest.cs" />

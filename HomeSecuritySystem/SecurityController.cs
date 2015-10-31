@@ -66,7 +66,7 @@ namespace HomeSecuritySystem
 
         public override void ClearMemory()
         {
-            throw new NotImplementedException();
+            _display.ClearSentReport();
         }
 
         public override void Disarm()
@@ -93,6 +93,7 @@ namespace HomeSecuritySystem
 
             string details = ConvertToJSON(report);
             _comms.InformSecurity(details);
+            _display.ShowSentReport(details);
         }
 
         protected virtual void NotifySystem(ISensor sensor)
@@ -106,7 +107,9 @@ namespace HomeSecuritySystem
             report.Type = GetReportType(sensor.Type);
             report.Time = DateTime.Now;
 
-            _comms.InformSecurity(ConvertToJSON(report));
+            string details = ConvertToJSON(report);
+            _comms.InformSecurity(details);
+            _display.ShowSentReport(details);
         }
 
         public static string ConvertToJSON(object obj)
