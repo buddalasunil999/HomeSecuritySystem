@@ -1,19 +1,17 @@
 ﻿using HomeSecuritySystem.Alarm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeSecuritySystem
 {
     public class SecurityAlarm : IAlarm
     {
+        private bool _isActive;
+        private bool _isOn;
+
         public bool IsActive
         {
             get
             {
-                return true;
+                return _isActive;
             }
         }
 
@@ -21,16 +19,18 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return true;
+                return _isOn;
             }
         }
 
         public void SoundAlarm()
         {
+            _isActive = true;
         }
 
         public void StopAlarm()
         {
+            _isActive = false;
         }
     }
 }

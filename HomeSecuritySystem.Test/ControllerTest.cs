@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using HomeSecuritySystem.Sensors;
+using HomeSecuritySystem.Report;
 
 namespace HomeSecuritySystem.Test
 {
@@ -18,7 +18,7 @@ namespace HomeSecuritySystem.Test
         {
             smokeSensor.SwitchOn();
         }
-        
+
         [TestMethod]
         public void TestSystemCheckWithNoSensors()
         {
@@ -126,6 +126,36 @@ namespace HomeSecuritySystem.Test
             smokeSensor.Trigger();
             Assert.IsTrue(display.DisplayedItems.DetectedSensors.Count > 0);
             Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(smokeSensor.Id));
+        }
+
+        [TestMethod]
+        public void TestWhenArmedSensorsDetectedSoundAlarm()
+        {
+            sensors.Add(smokeSensor);
+            SecurityAlarm alarm = new SecurityAlarm();
+            controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
+                alarm, display);
+
+            controller.Arm();
+            smokeSensor.Trigger();
+            Assert.IsTrue(alarm.IsActive);
+        }
+
+        [TestMethod]
+        public void TestWhenArmedSensorsDetectedSendReport()
+        {
+            sensors.Add(smokeSensor);
+            CommunicationUnitMock comms = new CommunicationUnitMock();
+
+            controller = new SecurityController(sensors, comms, new PowerSupply(),
+                new SecurityAlarm(), display);
+
+            controller.Arm();
+            smokeSensor.Trigger();
+            Report.Report report = SecurityController.DeserializeJSON<Report.Report>(comms.Details);
+            Assert.AreEqual(smokeSensor.Id, report.SensorId);
+            Assert.AreEqual(smokeSensor.Type, report.SensorType);
+            Assert.AreEqual(ReportType.Smoke, report.Type);
         }
     }
 }

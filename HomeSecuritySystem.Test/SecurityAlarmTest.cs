@@ -9,17 +9,17 @@ namespace HomeSecuritySystem.Test
     public class SecurityAlarmTest
     {
         [TestMethod]
-        public void TestIsOn()
+        public void TestAlarmIsOn()
         {
             SecurityAlarm alarm = new SecurityAlarm();
-            Assert.IsTrue(alarm.IsOn);
+            Assert.IsFalse(alarm.IsOn);
         }
 
         [TestMethod]
-        public void TestIsActive()
+        public void TestAlarmIsActive()
         {
             SecurityAlarm alarm = new SecurityAlarm();
-            Assert.IsTrue(alarm.IsActive);
+            Assert.IsFalse(alarm.IsActive);
         }
 
         [TestMethod]
@@ -27,6 +27,7 @@ namespace HomeSecuritySystem.Test
         {
             SecurityAlarm alarm = new SecurityAlarm();
             alarm.SoundAlarm();
+            Assert.IsTrue(alarm.IsActive);
         }
 
         [TestMethod]
@@ -34,6 +35,7 @@ namespace HomeSecuritySystem.Test
         {
             SecurityAlarm alarm = new SecurityAlarm();
             alarm.StopAlarm();
+            Assert.IsFalse(alarm.IsActive);
         }
     }
 }

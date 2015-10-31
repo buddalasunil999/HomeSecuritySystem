@@ -1,16 +1,13 @@
 ﻿using HomeSecuritySystem.Sensors;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HomeSecuritySystem.Events;
-using HomeSecuritySystem.Report;
 using HomeSecuritySystem.Comms;
 using HomeSecuritySystem.Alarm;
 using HomeSecuritySystem.Power;
 using HomeSecuritySystem.Display;
 using HomeSecuritySystem.Base;
+using HomeSecuritySystem.Report;
+using Newtonsoft.Json;
 
 namespace HomeSecuritySystem
 {
@@ -72,6 +69,40 @@ namespace HomeSecuritySystem
         private void Sensor_OnDetectionStateChanged(ISensor sensor)
         {
             _display.ShowSensorDetected(sensor.Id);
+            _alarm.SoundAlarm();
+
+            Report.Report report = new Report.Report();
+            report.SensorId = sensor.Id;
+            report.SensorType = sensor.Type;
+            report.Type = GetReportType(sensor.Type);
+            report.Time = DateTime.Now;
+
+            _comms.InformSecurity(ConvertToJSON(report));
+        }
+
+        public static string ConvertToJSON(object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
+        }
+
+        public static T DeserializeJSON<T>(string value)
+        {
+            return JsonConvert.DeserializeObject<T>(value);
+        }
+
+        public static ReportType GetReportType(SensorType type)
+        {
+            switch (type)
+            {
+                case SensorType.Smoke:
+                    return ReportType.Smoke;
+                case SensorType.Gas:
+                    return ReportType.Smoke;
+                case SensorType.Motion:
+                    return ReportType.Intrusion;
+                default:
+                    return ReportType.NoPower;
+            }
         }
     }
 }
