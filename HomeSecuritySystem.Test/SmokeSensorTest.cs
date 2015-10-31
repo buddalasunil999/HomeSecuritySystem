@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HomeSecuritySystem.Report;
+using HomeSecurityControl;
 
 namespace HomeSecuritySystem.Test
 {

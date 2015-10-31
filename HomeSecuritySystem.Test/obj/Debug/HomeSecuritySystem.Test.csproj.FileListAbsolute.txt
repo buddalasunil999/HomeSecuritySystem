@@ -1,10 +1,10 @@
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecuritySystem.Test.dll
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecuritySystem.Test.pdb
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\Components.dll
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecuritySystem.dll
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecuritySystem.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecurityControl.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\HomeSecurityControl.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\Newtonsoft.Json.xml
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\obj\Debug\HomeSecuritySystem.Test.csprojResolveAssemblyReference.cache
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\obj\Debug\HomeSecuritySystem.Test.dll
 C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\obj\Debug\HomeSecuritySystem.Test.pdb
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\Newtonsoft.Json.dll
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Test\bin\Debug\Newtonsoft.Json.xml

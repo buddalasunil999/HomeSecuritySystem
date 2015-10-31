@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HomeSecuritySystem.Sensors;
 using HomeSecuritySystem.Report;
+using HomeSecurityControl;
 
 namespace HomeSecuritySystem.Test
 {
@@ -262,7 +263,7 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void WhenMemoryCleared_ClearReport_OnDisplay()
         {
-            controller = new SecurityController(sensors, commsMock, powerSupply, alarm, display);
+            controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
             controller.ClearMemory();
             Assert.IsTrue(string.IsNullOrEmpty(display.DisplayedItems.ReportDetail));
         }

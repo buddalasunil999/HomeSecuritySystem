@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using HomeSecurityControl;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HomeSecuritySystem.Test
 {

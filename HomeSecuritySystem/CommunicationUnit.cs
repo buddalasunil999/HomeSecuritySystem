@@ -1,6 +1,6 @@
 ﻿using HomeSecuritySystem.Comms;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class CommunicationUnit : IComms
     {

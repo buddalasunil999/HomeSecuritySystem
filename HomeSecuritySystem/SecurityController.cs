@@ -8,8 +8,10 @@ using HomeSecuritySystem.Display;
 using HomeSecuritySystem.Base;
 using HomeSecuritySystem.Report;
 using Newtonsoft.Json;
+using System.Timers;
+using HomeSecuritySystem;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class SecurityController : ControllerBase
     {
@@ -87,7 +89,7 @@ namespace HomeSecuritySystem
         private void PowerSupply_OnNoPower()
         {
             _display.ShowPowerSupplyLowBattery();
-            Report.Report report = new Report.Report();
+            Report report = new Report();
             report.Type = ReportType.NoPower;
             report.Time = DateTime.Now;
 
@@ -101,7 +103,7 @@ namespace HomeSecuritySystem
             _alarm.SoundAlarm();
             _display.ShowAlarmSound();
 
-            Report.Report report = new Report.Report();
+            Report report = new Report();
             report.SensorId = sensor.Id;
             report.SensorType = sensor.Type;
             report.Type = GetReportType(sensor.Type);
@@ -110,6 +112,18 @@ namespace HomeSecuritySystem
             string details = ConvertToJSON(report);
             _comms.InformSecurity(details);
             _display.ShowSentReport(details);
+        }
+
+        public void EnablePeriodicCheck()
+        {
+            Timer timer = new Timer(3000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Enabled = true;
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            SystemCheck();
         }
 
         public static string ConvertToJSON(object obj)

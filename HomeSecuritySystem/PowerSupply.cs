@@ -1,7 +1,7 @@
 ﻿using HomeSecuritySystem.Power;
 using HomeSecuritySystem.Events;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class PowerSupply : IPowerSupply
     {

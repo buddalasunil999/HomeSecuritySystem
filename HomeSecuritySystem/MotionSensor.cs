@@ -2,7 +2,7 @@
 using HomeSecuritySystem.Events;
 using HomeSecuritySystem.Report;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class MotionSensor : ISensor, IControllable
     {

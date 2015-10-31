@@ -2,7 +2,7 @@
 using HomeSecuritySystem.Report;
 using HomeSecuritySystem.Sensors;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class SmokeSensor : ISensor, IControllable
     {

@@ -1,4 +1,4 @@
-﻿namespace HomeSecuritySystem
+﻿namespace HomeSecurityControl
 {
     public interface IControllable
     {

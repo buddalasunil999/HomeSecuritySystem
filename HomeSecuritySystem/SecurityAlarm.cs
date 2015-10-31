@@ -1,6 +1,6 @@
 ﻿using HomeSecuritySystem.Alarm;
 
-namespace HomeSecuritySystem
+namespace HomeSecurityControl
 {
     public class SecurityAlarm : IAlarm
     {
