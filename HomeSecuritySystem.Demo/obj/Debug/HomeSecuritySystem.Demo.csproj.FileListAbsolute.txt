@@ -1,6 +1,0 @@
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\bin\Debug\HomeSecuritySystem.Demo.exe.config
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\bin\Debug\HomeSecuritySystem.Demo.exe
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\bin\Debug\HomeSecuritySystem.Demo.pdb
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\obj\Debug\HomeSecuritySystem.Demo.exe
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\obj\Debug\HomeSecuritySystem.Demo.pdb
-C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem.Demo\obj\Debug\HomeSecuritySystem.Demo.csprojResolveAssemblyReference.cache

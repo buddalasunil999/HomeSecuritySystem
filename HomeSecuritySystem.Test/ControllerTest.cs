@@ -82,13 +82,15 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void SystemCheck_WhenSensorsOnLowBattery()
         {
-            sensors.Add(new SmokeSensorMock(true, true));
+            var smokeSensorMock = new SmokeSensorMock(true, true);
+            sensors.Add(smokeSensorMock);
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
 
             controller.SystemCheck();
             Assert.IsTrue(display.DisplayedItems.LowBatterySensors.Count > 0);
-            Assert.IsTrue(display.DisplayedItems.LowBatterySensors.Contains(1));
+            CollectionAssert.AllItemsAreUnique(display.DisplayedItems.LowBatterySensors);
+            CollectionAssert.Contains(display.DisplayedItems.LowBatterySensors, smokeSensorMock.Id);
         }
 
         [TestMethod]
@@ -220,8 +222,8 @@ namespace HomeSecuritySystem.Test
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
             controller.Arm();
 
-            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(smokeSensor.Id));
-            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(motionSensor.Id));
+            CollectionAssert.Contains(display.DisplayedItems.DetectedSensors, smokeSensor.Id);
+            CollectionAssert.Contains(display.DisplayedItems.DetectedSensors, motionSensor.Id);
         }
 
         [TestMethod]
@@ -233,8 +235,8 @@ namespace HomeSecuritySystem.Test
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
             controller.Disarm();
 
-            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(smokeSensor.Id));
-            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(motionSensor.Id));
+            CollectionAssert.Contains(display.DisplayedItems.DetectedSensors, smokeSensor.Id);
+            CollectionAssert.Contains(display.DisplayedItems.DetectedSensors, motionSensor.Id);
         }
 
         [TestMethod]

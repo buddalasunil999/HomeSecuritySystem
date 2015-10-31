@@ -1,6 +1,6 @@
 ﻿namespace HomeSecuritySystem
 {
-    interface IControllable
+    public interface IControllable
     {
         void SwitchOn();
         void SwitchOff();
