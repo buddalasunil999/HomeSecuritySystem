@@ -38,6 +38,12 @@ namespace HomeSecurityControl
             }
 
             powerSupply.OnNoPower += PowerSupply_OnNoPower;
+
+            SystemCheck();
+
+            Timer timer = new Timer(3000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Enabled = true;
         }
 
         public override void SystemCheck()
@@ -113,14 +119,7 @@ namespace HomeSecurityControl
             _comms.InformSecurity(details);
             _display.ShowSentReport(details);
         }
-
-        public void EnablePeriodicCheck()
-        {
-            Timer timer = new Timer(3000);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Enabled = true;
-        }
-
+        
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             SystemCheck();

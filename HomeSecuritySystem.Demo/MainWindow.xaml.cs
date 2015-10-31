@@ -27,7 +27,6 @@ namespace HomeSecuritySystemDemo
 
             controller = new SecurityController(sensors, comms,
             powerSupply, alarm, userDisplay);
-            controller.EnablePeriodicCheck();
         }
 
         private void btnTriggerSmokeSensor_Click(object sender, RoutedEventArgs e)

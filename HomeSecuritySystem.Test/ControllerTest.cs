@@ -31,8 +31,7 @@ namespace HomeSecuritySystem.Test
         public void SystemCheck_WithNoSensors()
         {
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsTrue(display.DisplayedItems.SystemReady);
         }
 
@@ -42,8 +41,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(new SmokeSensorMock(false));
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsFalse(display.DisplayedItems.SystemReady);
         }
 
@@ -53,8 +51,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsTrue(display.DisplayedItems.SystemReady);
         }
 
@@ -64,8 +61,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, comms, lowBatteryPowerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsTrue(display.DisplayedItems.PowerSupplyLowBattery);
         }
 
@@ -75,8 +71,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsFalse(display.DisplayedItems.PowerSupplyLowBattery);
         }
 
@@ -87,8 +82,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(smokeSensorMock);
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsTrue(display.DisplayedItems.LowBatterySensors.Count > 0);
             CollectionAssert.AllItemsAreUnique(display.DisplayedItems.LowBatterySensors);
             CollectionAssert.Contains(display.DisplayedItems.LowBatterySensors, smokeSensorMock.Id);
@@ -100,8 +94,7 @@ namespace HomeSecuritySystem.Test
             sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, comms, powerSupply, alarm, display);
-
-            controller.SystemCheck();
+            
             Assert.IsFalse(display.DisplayedItems.LowBatterySensors.Count > 0);
         }
 
