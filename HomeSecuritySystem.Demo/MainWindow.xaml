@@ -6,15 +6,13 @@
         xmlns:local="clr-namespace:HomeSecuritySystemDemo"
         xmlns:system="clr"
         mc:Ignorable="d"
-        Title="Home Security System" Height="350" Width="656.579">
+        Title="Home Security System" Height="522.369" Width="859.211">
     <Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="91" Margin="53,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="91" Margin="244,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="53,164,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="88" Margin="244,164,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
         <Label x:Name="lblSmokeSensor" Content="Smoke Sensor" HorizontalAlignment="Left" Margin="57,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
         <Label x:Name="lblMotionSensor" Content="Motion Sensor" HorizontalAlignment="Left" Margin="247,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
-        <Label x:Name="lblAlarm" Content="Alarm" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
         <Label x:Name="lblPowerSupply" Content="Power Supply" HorizontalAlignment="Left" Margin="250,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
         <RadioButton x:Name="rbSmokeSensorOn" Content="On" GroupName="smoke" HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" Checked="rbSmokeSensorOn_Checked"/>
         <RadioButton x:Name="rbSmokeSensorOff" Content="Off" GroupName="smoke" HorizontalAlignment="Left" Margin="100,78,0,0" VerticalAlignment="Top" Checked="rbSmokeSensorOff_Checked"/>
@@ -22,22 +20,9 @@
         <RadioButton x:Name="rbMotionSensorOff" Content="Off" GroupName="motion" HorizontalAlignment="Left" Margin="289,79,0,0" VerticalAlignment="Top" Checked="rbMotionSensorOff_Checked"/>
         <Button x:Name="btnTriggerSmokeSensor" Content="Trigger" HorizontalAlignment="Left" Margin="62,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerSmokeSensor_Click"/>
         <Button x:Name="btnTriggerMotionSensor" Content="Trigger" HorizontalAlignment="Left" Margin="251,100,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerMotionSensor_Click"/>
-        <ListBox x:Name="listBox" Height="228" Margin="370,39,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="245">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label x:Name="label" Content="{Binding}" Height="30" Width="245">
-                        <Label.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap" />
-                            </Style>
-                        </Label.Resources>
-                    </Label>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <RadioButton x:Name="rbPowerSupplyOn" Content="On" GroupName="power" HorizontalAlignment="Left" Margin="251,213,0,0" VerticalAlignment="Top" Checked="rbPowerSupplyOn_Checked"/>
-        <RadioButton x:Name="rbPowerSupplyOff" Content="Off" GroupName="power" HorizontalAlignment="Left" Margin="289,213,0,0" VerticalAlignment="Top" Checked="rbPowerSupplyOff_Checked"/>
-        <CheckBox x:Name="cbArm" Content="Arm" HorizontalAlignment="Left" Margin="57,240,0,0" VerticalAlignment="Top" Click="cbArm_Click"/>
-        <CheckBox x:Name="cbStay" Content="Stay" HorizontalAlignment="Left" Margin="57,260,0,0" VerticalAlignment="Top" Click="cbStay_Click"/>
+        <CheckBox x:Name="cbPowerSupplyOff" Content="BlackOut" HorizontalAlignment="Left" Margin="251,213,0,0" VerticalAlignment="Top" Click="cbPowerSupplyOff_Click"/>
+        <CheckBox x:Name="cbArm" Content="Arm" HorizontalAlignment="Left" Margin="57,176,0,0" VerticalAlignment="Top" Click="cbArm_Click"/>
+        <CheckBox x:Name="cbStay" Content="Stay" HorizontalAlignment="Left" Margin="57,196,0,0" VerticalAlignment="Top" Click="cbStay_Click"/>
+        <local:Display x:Name="userDisplay" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top" Height="355" Width="400"/>
     </Grid>
 </Window>

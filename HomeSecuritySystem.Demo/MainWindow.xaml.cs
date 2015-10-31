@@ -1,10 +1,7 @@
 ﻿using HomeSecurityControl;
-using HomeSecuritySystem;
 using HomeSecuritySystem.Sensors;
 using System.Collections.Generic;
 using System.Windows;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace HomeSecuritySystemDemo
 {
@@ -16,10 +13,7 @@ namespace HomeSecuritySystemDemo
         CommunicationUnit comms = new CommunicationUnit();
         PowerSupply powerSupply = new PowerSupply();
         SecurityAlarm alarm = new SecurityAlarm();
-        SystemDisplay display;
         SecurityController controller;
-        Stack<string> messages = new Stack<string>();
-        TaskScheduler scheduler;
 
         public MainWindow()
         {
@@ -27,29 +21,13 @@ namespace HomeSecuritySystemDemo
 
             rbSmokeSensorOn.IsChecked = true;
             rbMotionSensorOn.IsChecked = true;
-            rbPowerSupplyOn.IsChecked = true;
-
-            listBox.ItemsSource = messages;
-            scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-
-            display = new SystemDisplay();
-            display.MessageAdded += Display_MessageAdded;
 
             sensors.Add(smokeSensor);
             sensors.Add(motionSensor);
 
             controller = new SecurityController(sensors, comms,
-            powerSupply, alarm, display);
+            powerSupply, alarm, userDisplay);
             controller.EnablePeriodicCheck();
-        }
-
-        private void Display_MessageAdded(object sender, MessageAddedArgs e)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                messages.Push(e.Message);
-                listBox.Items.Refresh();
-            }, CancellationToken.None, TaskCreationOptions.None, scheduler);
         }
 
         private void btnTriggerSmokeSensor_Click(object sender, RoutedEventArgs e)
@@ -75,16 +53,6 @@ namespace HomeSecuritySystemDemo
         private void rbMotionSensorOff_Checked(object sender, RoutedEventArgs e)
         {
             motionSensor.SwitchOff();
-        }
-
-        private void rbPowerSupplyOn_Checked(object sender, RoutedEventArgs e)
-        {
-            powerSupply.SwitchOn();
-        }
-
-        private void rbPowerSupplyOff_Checked(object sender, RoutedEventArgs e)
-        {
-            powerSupply.SwitchOff();
         }
 
         private void btnTriggerMotionSensor_Click(object sender, RoutedEventArgs e)
@@ -119,6 +87,14 @@ namespace HomeSecuritySystemDemo
             }
             else
                 ArmOrDisarmController();
+        }
+
+        private void cbPowerSupplyOff_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)cbPowerSupplyOff.IsChecked)
+                powerSupply.TriggerLowPower();
+            else
+                powerSupply.ResetLowPower();
         }
     }
 }
