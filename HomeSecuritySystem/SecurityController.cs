@@ -31,6 +31,11 @@ namespace HomeSecuritySystem
             _powerSupply = powerSupply;
             _alarm = alarm;
             _display = display;
+
+            foreach (ISensor sensor in _sensors)
+            {
+                sensor.OnDetectionStateChanged += Sensor_OnDetectionStateChanged;
+            }
         }
 
         public override void ClearMemory()
@@ -62,6 +67,11 @@ namespace HomeSecuritySystem
                 _display.ShowSensorLowBattery(lowBatterySensors);
             else
                 _display.ShowSystemReady();
+        }
+
+        private void Sensor_OnDetectionStateChanged(ISensor sensor)
+        {
+            _display.ShowSensorDetected(sensor.Id);
         }
     }
 }

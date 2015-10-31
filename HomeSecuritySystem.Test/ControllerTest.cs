@@ -11,10 +11,12 @@ namespace HomeSecuritySystem.Test
         SecurityController controller;
         ICollection<ISensor> sensors = new List<ISensor>();
         DisplayMock display = new DisplayMock();
+        SmokeSensor smokeSensor = new SmokeSensor(1);
 
         [TestInitialize]
         public void Initialize()
         {
+            smokeSensor.SwitchOn();
         }
         
         [TestMethod]
@@ -42,7 +44,7 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void TestSystemCheckWhenSensorsWorking()
         {
-            sensors.Add(new SmokeSensor());
+            sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
                 new SecurityAlarm(), display);
@@ -54,7 +56,7 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void TestSystemCheckWhenPowerSupplyOnLowBattery()
         {
-            sensors.Add(new SmokeSensor());
+            sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupplyMock(true),
                 new SecurityAlarm(), display);
@@ -66,7 +68,7 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void TestSystemCheckWhenPowerSupplyNotOnLowBattery()
         {
-            sensors.Add(new SmokeSensor());
+            sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
                 new SecurityAlarm(), display);
@@ -85,18 +87,45 @@ namespace HomeSecuritySystem.Test
 
             controller.SystemCheck();
             Assert.IsTrue(display.DisplayedItems.LowBatterySensors.Count > 0);
+            Assert.IsTrue(display.DisplayedItems.LowBatterySensors.Contains(1));
         }
 
         [TestMethod]
         public void TestSystemCheckWhenSensorsAreNotOnLowBattery()
         {
-            sensors.Add(new SmokeSensor());
+            sensors.Add(smokeSensor);
 
             controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
                 new SecurityAlarm(), display);
 
             controller.SystemCheck();
             Assert.IsFalse(display.DisplayedItems.LowBatterySensors.Count > 0);
+        }
+
+        [TestMethod]
+        public void TestWhenArmedNoSensorsDetected()
+        {
+            sensors.Add(smokeSensor);
+
+            controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
+                new SecurityAlarm(), display);
+
+            controller.Arm();
+            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Count == 0);
+        }
+
+        [TestMethod]
+        public void TestWhenArmedSensorsDetected()
+        {
+            sensors.Add(smokeSensor);
+
+            controller = new SecurityController(sensors, new CommunicationUnit(), new PowerSupply(),
+                new SecurityAlarm(), display);
+
+            controller.Arm();
+            smokeSensor.Trigger();
+            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Count > 0);
+            Assert.IsTrue(display.DisplayedItems.DetectedSensors.Contains(smokeSensor.Id));
         }
     }
 }

@@ -1,37 +1,21 @@
 ﻿using HomeSecuritySystem.Events;
 using HomeSecuritySystem.Report;
 using HomeSecuritySystem.Sensors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeSecuritySystem
 {
-    public class SmokeSensor : ISensor
+    public class SmokeSensor : ISensor, IControllable
     {
-        public bool Detected
-        {
-            get
-            {
-                return true;
-            }
-        }
+        private int _id;
+        private SensorType _type;
+        private bool _isOn;
+        private bool _detected;
 
         public int Id
         {
             get
             {
-                return 1;
-            }
-        }
-
-        public bool IsOn
-        {
-            get
-            {
-                return true;
+                return _id;
             }
         }
 
@@ -39,10 +23,61 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return SensorType.Smoke;
+                return _type;
+            }
+        }
+
+        public bool IsOn
+        {
+            get
+            {
+                return _isOn;
+            }
+        }
+
+        public bool Detected
+        {
+            get
+            {
+                return _detected;
             }
         }
 
         public event SensorDetectionStateChangeEvent OnDetectionStateChanged;
+
+        public SmokeSensor(int id)
+        {
+            _id = id;
+            _type = SensorType.Smoke;
+        }
+
+        public void SwitchOn()
+        {
+            _isOn = true;
+        }
+
+        public void SwitchOff()
+        {
+            _isOn = false;
+        }
+
+        public void Trigger()
+        {
+            _detected = true;
+            OnDetectionStateChange();
+        }
+
+        public void ResetTrigger()
+        {
+            _detected = false;
+            OnDetectionStateChange();
+        }
+
+        protected virtual void OnDetectionStateChange()
+        {
+            SensorDetectionStateChangeEvent handler = OnDetectionStateChanged;
+            if (handler != null)
+                handler(this);
+        }
     }
 }
