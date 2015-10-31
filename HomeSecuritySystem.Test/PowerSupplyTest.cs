@@ -1,27 +1,50 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeSecuritySystem.Test
 {
     [TestClass]
     public class PowerSupplyTest
     {
+        PowerSupply power = new PowerSupply();
+
         [TestMethod]
-        public void TestPowerSupplyIsOn()
+        public void TestPowerSupply_IsOn()
         {
-            PowerSupply power = new PowerSupply();
+            Assert.IsFalse(power.IsOn);
+        }
+
+        [TestMethod]
+        public void TestPowerSupply_IsLowBattery()
+        {
+            Assert.IsFalse(power.IsLowBattery);
+        }
+
+        [TestMethod]
+        public void TestPowerSupply_TriggerLowPower()
+        {
+            power.TriggerLowPower();
+            Assert.IsTrue(power.IsLowBattery);
+        }
+
+        [TestMethod]
+        public void TestPowerSupply_ResetLowPower()
+        {
+            power.ResetLowPower();
+            Assert.IsFalse(power.IsLowBattery);
+        }
+
+        [TestMethod]
+        public void TestPowerSupply_SwitchOn()
+        {
+            power.SwitchOn();
             Assert.IsTrue(power.IsOn);
         }
 
         [TestMethod]
-        public void TestPowerSupplyIsLowBattery()
+        public void TestPowerSupply_SwitchOff()
         {
-            PowerSupply power = new PowerSupply();
-            Assert.IsFalse(power.IsLowBattery);
+            power.SwitchOff();
+            Assert.IsFalse(power.IsOn);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace HomeSecuritySystem.Test
     public class CommunicationUnitTest
     {        
         [TestMethod]
-        public void TestInformSecurity()
+        public void CommunicationUnit_InformSecurity()
         {
             CommunicationUnit comms = new CommunicationUnit();
             comms.InformSecurity("Security alert.");
@@ -17,7 +17,7 @@ namespace HomeSecuritySystem.Test
 
 
         [TestMethod]
-        public void TestIsOn()
+        public void ComminicationUnit_IsOn()
         {
             CommunicationUnit comms = new CommunicationUnit();
             Assert.IsTrue(comms.IsOn);

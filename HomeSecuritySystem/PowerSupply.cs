@@ -1,24 +1,18 @@
 ﻿using HomeSecuritySystem.Power;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HomeSecuritySystem.Events;
 
 namespace HomeSecuritySystem
 {
     public class PowerSupply : IPowerSupply
     {
-        public PowerSupply()
-        {
-        }
+        private bool _isLowBattery;
+        private bool _isOn;
 
         public bool IsLowBattery
         {
             get
             {
-                return false;
+                return _isLowBattery;
             }
         }
 
@@ -26,10 +20,38 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return true;
+                return _isOn;
             }
         }
 
         public event NoPowerEvent OnNoPower;
+
+        protected virtual void OnNoPowerEvent()
+        {
+            NoPowerEvent handler = OnNoPower;
+            if (handler != null)
+                handler();
+        }
+
+        public void SwitchOn()
+        {
+            _isOn = true;
+        }
+
+        public void SwitchOff()
+        {
+            _isOn = false;
+        }
+
+        public void TriggerLowPower()
+        {
+            _isLowBattery = true;
+            OnNoPowerEvent();
+        }
+        
+        public void ResetLowPower()
+        {
+            _isLowBattery = false;
+        }
     }
 }

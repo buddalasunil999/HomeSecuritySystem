@@ -31,10 +31,13 @@ namespace HomeSecuritySystem
 
             foreach (ISensor sensor in _sensors)
             {
+                _display.ShowSensorDetected(sensor.Id);
                 sensor.OnDetectionStateChanged += Sensor_OnDetectionStateChanged;
             }
+
+            powerSupply.OnNoPower += PowerSupply_OnNoPower;
         }
-        
+
         public override void SystemCheck()
         {
             List<int> lowBatterySensors = new List<int>();
@@ -78,12 +81,22 @@ namespace HomeSecuritySystem
             if (IsArmed && IsStay && sensor.Type != SensorType.Motion)
                 return;
 
-            NotifySecurity(sensor);
+            NotifySystem(sensor);
         }
 
-        protected virtual void NotifySecurity(ISensor sensor)
+        private void PowerSupply_OnNoPower()
         {
-            _display.ShowSensorDetected(sensor.Id);
+            _display.ShowPowerSupplyLowBattery();
+            Report.Report report = new Report.Report();
+            report.Type = ReportType.NoPower;
+            report.Time = DateTime.Now;
+
+            string details = ConvertToJSON(report);
+            _comms.InformSecurity(details);
+        }
+
+        protected virtual void NotifySystem(ISensor sensor)
+        {
             _alarm.SoundAlarm();
             _display.ShowAlarmSound();
 
