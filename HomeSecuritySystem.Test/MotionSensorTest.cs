@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HomeSecuritySystem.Report;
 
 namespace HomeSecuritySystem.Test
@@ -9,24 +6,23 @@ namespace HomeSecuritySystem.Test
     [TestClass]
     public class MotionSensorTest
     {
+        MotionSensor sensor = new MotionSensor(2);
+
         [TestMethod]
         public void TestMotionSensorIsOn()
         {
-            MotionSensor sensor = new MotionSensor();
-            Assert.IsTrue(sensor.IsOn);
+            Assert.IsFalse(sensor.IsOn);
         }
 
         [TestMethod]
         public void TestMotionSensorDetected()
         {
-            MotionSensor sensor = new MotionSensor();
-            Assert.IsTrue(sensor.Detected);
+            Assert.IsFalse(sensor.Detected);
         }
 
         [TestMethod]
         public void TestMotionSensorId()
         {
-            MotionSensor sensor = new MotionSensor();
             Assert.IsNotNull(sensor.Id);
             Assert.AreEqual(2, sensor.Id);
         }
@@ -34,8 +30,35 @@ namespace HomeSecuritySystem.Test
         [TestMethod]
         public void TestMotionSensorType()
         {
-            MotionSensor sensor = new MotionSensor();
             Assert.AreEqual(SensorType.Motion, sensor.Type);
+        }
+
+        [TestMethod]
+        public void TestMotionSensorSwitchOn()
+        {
+            sensor.SwitchOn();
+            Assert.IsTrue(sensor.IsOn);
+        }
+
+        [TestMethod]
+        public void TestMotionSensorSwitchOff()
+        {
+            sensor.SwitchOff();
+            Assert.IsFalse(sensor.IsOn);
+        }
+
+        [TestMethod]
+        public void TestMotionSensorTrigger()
+        {
+            sensor.Trigger();
+            Assert.IsTrue(sensor.Detected);
+        }
+
+        [TestMethod]
+        public void TestMotionSensorResetTrigger()
+        {
+            sensor.ResetTrigger();
+            Assert.IsFalse(sensor.Detected);
         }
     }
 }

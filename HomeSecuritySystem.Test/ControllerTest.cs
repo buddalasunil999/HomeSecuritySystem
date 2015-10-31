@@ -12,11 +12,13 @@ namespace HomeSecuritySystem.Test
         ICollection<ISensor> sensors = new List<ISensor>();
         DisplayMock display = new DisplayMock();
         SmokeSensor smokeSensor = new SmokeSensor(1);
+        MotionSensor motionSensor = new MotionSensor(2);
 
         [TestInitialize]
         public void Initialize()
         {
             smokeSensor.SwitchOn();
+            motionSensor.SwitchOn();
         }
 
         [TestMethod]
@@ -139,13 +141,14 @@ namespace HomeSecuritySystem.Test
             controller.Arm();
             smokeSensor.Trigger();
             Assert.IsTrue(alarm.IsActive);
+            Assert.IsTrue(display.DisplayedItems.AlarmSound);
         }
 
         [TestMethod]
         public void TestWhenArmedSensorsDetectedSendReport()
         {
             sensors.Add(smokeSensor);
-            CommunicationUnitMock comms = new CommunicationUnitMock();
+            var comms = new CommunicationUnitMock();
 
             controller = new SecurityController(sensors, comms, new PowerSupply(),
                 new SecurityAlarm(), display);
@@ -156,6 +159,64 @@ namespace HomeSecuritySystem.Test
             Assert.AreEqual(smokeSensor.Id, report.SensorId);
             Assert.AreEqual(smokeSensor.Type, report.SensorType);
             Assert.AreEqual(ReportType.Smoke, report.Type);
+        }
+
+        [TestMethod]
+        public void TestWhenArmStayNonPerimeterSensorDetected()
+        {
+            sensors.Add(smokeSensor);
+            sensors.Add(motionSensor);
+
+            var comms = new CommunicationUnitMock();
+
+            controller = new SecurityController(sensors, comms, new PowerSupply(),
+                new SecurityAlarm(), display);
+
+            controller.ArmStay();
+            smokeSensor.Trigger();
+
+            Assert.IsFalse(display.DisplayedItems.AlarmSound);
+        }
+
+        [TestMethod]
+        public void TestWhenArmStayPerimeterSensorDetected()
+        {
+            sensors.Add(smokeSensor);
+            sensors.Add(motionSensor);
+
+            var comms = new CommunicationUnitMock();
+            var alarm = new SecurityAlarm();
+            controller = new SecurityController(sensors, comms, new PowerSupply(),
+                alarm, display);
+
+            controller.ArmStay();
+            motionSensor.Trigger();
+
+            Assert.IsTrue(alarm.IsActive);
+            Assert.IsTrue(display.DisplayedItems.AlarmSound);
+
+            Report.Report report = SecurityController.DeserializeJSON<Report.Report>(comms.Details);
+            Assert.AreEqual(motionSensor.Id, report.SensorId);
+            Assert.AreEqual(motionSensor.Type, report.SensorType);
+            Assert.AreEqual(ReportType.Intrusion, report.Type);
+        }
+
+        [TestMethod]
+        public void TestWhenDisarmedStopAlarm()
+        {
+            sensors.Add(smokeSensor);
+            sensors.Add(motionSensor);
+
+            var comms = new CommunicationUnitMock();
+            var alarm = new SecurityAlarm();
+            controller = new SecurityController(sensors, comms, new PowerSupply(),
+                alarm, display);
+
+            controller.ArmStay();
+            motionSensor.Trigger();
+            controller.Disarm();
+
+            Assert.IsFalse(alarm.IsActive);
         }
     }
 }

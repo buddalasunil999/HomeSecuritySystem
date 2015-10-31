@@ -34,12 +34,7 @@ namespace HomeSecuritySystem
                 sensor.OnDetectionStateChanged += Sensor_OnDetectionStateChanged;
             }
         }
-
-        public override void ClearMemory()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public override void SystemCheck()
         {
             List<int> lowBatterySensors = new List<int>();
@@ -66,10 +61,31 @@ namespace HomeSecuritySystem
                 _display.ShowSystemReady();
         }
 
+        public override void ClearMemory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Disarm()
+        {
+            base.Disarm();
+
+            _alarm.StopAlarm();
+        }
+
         private void Sensor_OnDetectionStateChanged(ISensor sensor)
+        {
+            if (IsArmed && IsStay && sensor.Type != SensorType.Motion)
+                return;
+
+            NotifySecurity(sensor);
+        }
+
+        protected virtual void NotifySecurity(ISensor sensor)
         {
             _display.ShowSensorDetected(sensor.Id);
             _alarm.SoundAlarm();
+            _display.ShowAlarmSound();
 
             Report.Report report = new Report.Report();
             report.SensorId = sensor.Id;

@@ -1,21 +1,25 @@
 ﻿using HomeSecuritySystem.Sensors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HomeSecuritySystem.Events;
 using HomeSecuritySystem.Report;
 
 namespace HomeSecuritySystem
 {
-    public class MotionSensor : ISensor
+    public class MotionSensor : ISensor, IControllable
     {
+        private int _id;
+        private bool _isOn;
+        private bool _detected;
+
+        public MotionSensor(int id)
+        {
+            _id = id;
+        }
+
         public bool Detected
         {
             get
             {
-                return true;
+                return _detected;
             }
         }
 
@@ -23,7 +27,7 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return 2;
+                return _id;
             }
         }
 
@@ -31,7 +35,7 @@ namespace HomeSecuritySystem
         {
             get
             {
-                return true;
+                return _isOn;
             }
         }
 
@@ -44,5 +48,34 @@ namespace HomeSecuritySystem
         }
 
         public event SensorDetectionStateChangeEvent OnDetectionStateChanged;
+        
+        public void SwitchOn()
+        {
+            _isOn = true;
+        }
+
+        public void SwitchOff()
+        {
+            _isOn = false;
+        }
+
+        public void Trigger()
+        {
+            _detected = true;
+            OnDetectionStateChange();
+        }
+
+        public void ResetTrigger()
+        {
+            _detected = false;
+            OnDetectionStateChange();
+        }
+
+        protected virtual void OnDetectionStateChange()
+        {
+            SensorDetectionStateChangeEvent handler = OnDetectionStateChanged;
+            if (handler != null)
+                handler(this);
+        }
     }
 }
