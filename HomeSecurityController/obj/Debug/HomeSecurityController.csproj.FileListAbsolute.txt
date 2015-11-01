@@ -1,0 +1,15 @@
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\HomeSecurityControl.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\HomeSecurityControl.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\Components.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\obj\Debug\HomeSecurityControl.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecuritySystem\obj\Debug\HomeSecurityControl.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\bin\Debug\HomeSecurityControl.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\bin\Debug\HomeSecurityControl.pdb
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\bin\Debug\Components.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\obj\Debug\HomeSecurityController.csprojResolveAssemblyReference.cache
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\obj\Debug\HomeSecurityControl.dll
+C:\Users\DarkBlue\Documents\GitHub\HomeSecuritySystem\HomeSecurityController\obj\Debug\HomeSecurityControl.pdb
