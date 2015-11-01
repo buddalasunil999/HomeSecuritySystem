@@ -7,10 +7,8 @@ namespace HomeSecuritySystemDemo
 {
     public partial class MainWindow : Window
     {
-        private ICollection<ISensor> _sensors;
         private SmokeSensor _smokeSensor;
         private MotionSensor _motionSensor;
-        private CommunicationUnit _comms;
         private PowerSupply _powerSupply;
         private SecurityAlarm _alarm;
         private SecurityController _controller;
@@ -19,21 +17,21 @@ namespace HomeSecuritySystemDemo
         {
             InitializeComponent();
 
-            _sensors = new List<ISensor>();
+            ICollection<ISensor> sensors = new List<ISensor>();
             _smokeSensor = new SmokeSensor(1);
             _motionSensor = new MotionSensor(2);
-            _comms = new CommunicationUnit();
+            var comms = new CommunicationUnit();
             _powerSupply = new PowerSupply();
             _alarm = new SecurityAlarm();
 
-            _sensors.Add(_smokeSensor);
-            _sensors.Add(_motionSensor);
+            sensors.Add(_smokeSensor);
+            sensors.Add(_motionSensor);
 
             rbSmokeSensorOn.IsChecked = true;
             rbMotionSensorOn.IsChecked = true;
             rbAlarmOn.IsChecked = true;
 
-            _controller = new SecurityController(_sensors, _comms,
+            _controller = new SecurityController(sensors, comms,
             _powerSupply, _alarm, userDisplay);
         }
 
@@ -69,7 +67,7 @@ namespace HomeSecuritySystemDemo
 
         private void ArmOrDisarmController()
         {
-            if ((bool)cbArm.IsChecked)
+            if (cbArm.IsChecked != null && (bool)cbArm.IsChecked)
                 _controller.Arm();
             else
                 _controller.Disarm();
@@ -82,7 +80,7 @@ namespace HomeSecuritySystemDemo
 
         private void cbStay_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)cbStay.IsChecked)
+            if (cbStay.IsChecked != null && (bool)cbStay.IsChecked)
             {
                 cbArm.IsChecked = true;
                 _controller.ArmStay();
@@ -93,7 +91,7 @@ namespace HomeSecuritySystemDemo
 
         private void cbPowerSupplyOff_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)cbPowerSupplyOff.IsChecked)
+            if (cbPowerSupplyOff.IsChecked != null && (bool)cbPowerSupplyOff.IsChecked)
                 _powerSupply.TriggerLowPower();
             else
                 _powerSupply.ResetLowPower();
@@ -107,6 +105,11 @@ namespace HomeSecuritySystemDemo
         private void rbAlarmOff_Checked(object sender, RoutedEventArgs e)
         {
             _alarm.SwitchOff();
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ClearMemory();
         }
     }
 }

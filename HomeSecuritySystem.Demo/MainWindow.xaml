@@ -31,5 +31,6 @@
         <GroupBox x:Name="groupBox" Header="Display" HorizontalAlignment="Left" Margin="400,39,0,0" VerticalAlignment="Top" Height="432" Width="426">
             <local:Display x:Name="userDisplay" HorizontalAlignment="Left" Margin="6,1,0,0" VerticalAlignment="Top" Height="355" Width="400"/>
         </GroupBox>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="751,14,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="btnClear_Click"/>
     </Grid>
 </Window>
