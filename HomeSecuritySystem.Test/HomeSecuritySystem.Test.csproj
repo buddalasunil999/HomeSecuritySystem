@@ -61,7 +61,7 @@
     <Compile Include="PowerSupplyMock.cs" />
     <Compile Include="PowerSupplyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmokeSensorMock.cs" />
+    <Compile Include="BatteryPoweredSensorMock.cs" />
     <Compile Include="SmokeSensorTest.cs" />
     <Compile Include="MotionSensorTest.cs" />
     <Compile Include="SecurityAlarmTest.cs" />

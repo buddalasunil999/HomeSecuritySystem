@@ -86,13 +86,28 @@ namespace HomeSecurityControl
         public override void ClearMemory()
         {
             _display.ClearSentReport();
+            _display.ClearAlarmSound();
+            _display.ClearSystemArmed();
+        }
+
+        public override void Arm()
+        {
+            base.Arm();
+            _display.ShowSystemArmed();
+        }
+
+        public override void ArmStay()
+        {
+            base.ArmStay();
+            _display.ShowSystemArmedStay();
         }
 
         public override void Disarm()
         {
             base.Disarm();
-
             _alarm.StopAlarm();
+            _display.ClearAlarmSound();
+            _display.ClearSystemArmed();
         }
 
         private void Sensor_OnDetectionStateChanged(ISensor sensor)

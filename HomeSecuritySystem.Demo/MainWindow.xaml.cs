@@ -110,6 +110,8 @@ namespace HomeSecuritySystemDemo
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             _controller.ClearMemory();
+            cbArm.IsChecked = false;
+            cbStay.IsChecked = false;
         }
     }
 }

@@ -28,12 +28,24 @@ namespace HomeSecuritySystemDemo
             grid.DataContext = _details;
         }
 
-        private DisplayedItems _displayedItems;
         private DisplayDetails _details;
 
         public DisplayedItems DisplayedItems
         {
-            get { return _displayedItems; }
+            get
+            {
+                return new DisplayedItems
+                {
+                    Armed = _details.Armed,
+                    AlarmSound = _details.AlarmSound,
+                    Stay = _details.Stay,
+                    SystemReady = _details.SystemReady,
+                    DetectedSensors = _details.DetectedSensors,
+                    LowBatterySensors = _details.LowBatterySensors,
+                    PowerSupplyLowBattery = _details.PowerSupplyLowBattery,
+                    ReportDetail = _details.ReportDetail
+                };
+            }
         }
 
         public void ShowSystemReady()
@@ -201,10 +213,7 @@ namespace HomeSecuritySystemDemo
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, e);
-            }
+            PropertyChanged?.Invoke(this, e);
         }
     }
 
