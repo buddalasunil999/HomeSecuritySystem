@@ -105,9 +105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeSecuritySystem\HomeSecuritySystem.csproj">
+    <ProjectReference Include="..\HomeSecurityController\HomeSecurityController.csproj">
       <Project>{9093e8e5-46bb-4cd2-8512-8f85c266ebaf}</Project>
-      <Name>HomeSecuritySystem</Name>
+      <Name>HomeSecurityController</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
