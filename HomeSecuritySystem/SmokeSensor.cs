@@ -6,70 +6,41 @@ namespace HomeSecurityControl
 {
     public class SmokeSensor : ISensor, IControllable
     {
-        private int _id;
-        private SensorType _type;
-        private bool _isOn;
-        private bool _detected;
+        public int Id { get; }
 
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public SensorType Type { get; }
 
-        public SensorType Type
-        {
-            get
-            {
-                return _type;
-            }
-        }
+        public bool IsOn { get; private set; }
 
-        public bool IsOn
-        {
-            get
-            {
-                return _isOn;
-            }
-        }
-
-        public bool Detected
-        {
-            get
-            {
-                return _detected;
-            }
-        }
+        public bool Detected { get; private set; }
 
         public event SensorDetectionStateChangeEvent OnDetectionStateChanged;
 
         public SmokeSensor(int id)
         {
-            _id = id;
-            _type = SensorType.Smoke;
+            Id = id;
+            Type = SensorType.Smoke;
         }
 
         public void SwitchOn()
         {
-            _isOn = true;
+            IsOn = true;
         }
 
         public void SwitchOff()
         {
-            _isOn = false;
+            IsOn = false;
         }
 
         public void Trigger()
         {
-            _detected = true;
+            Detected = true;
             OnDetectionStateChange();
         }
 
         public void ResetTrigger()
         {
-            _detected = false;
+            Detected = false;
             OnDetectionStateChange();
         }
 

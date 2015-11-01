@@ -67,11 +67,6 @@ namespace HomeSecuritySystemDemo
             _motionSensor.Trigger();
         }
 
-        private void cbArm_Checked(object sender, RoutedEventArgs e)
-        {
-            ArmOrDisarmController();
-        }
-
         private void ArmOrDisarmController()
         {
             if ((bool)cbArm.IsChecked)

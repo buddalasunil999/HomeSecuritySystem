@@ -6,46 +6,46 @@ namespace HomeSecuritySystem.Test
     [TestClass]
     public class SecurityAlarmTest
     {
-        SecurityAlarm alarm = new SecurityAlarm();
+        SecurityAlarm _alarm = new SecurityAlarm();
 
         [TestMethod]
         public void TestAlarmIsOn()
         {
-            Assert.IsFalse(alarm.IsOn);
+            Assert.IsFalse(_alarm.IsOn);
         }
 
         [TestMethod]
         public void TestAlarmIsActive()
         {
-            Assert.IsFalse(alarm.IsActive);
+            Assert.IsFalse(_alarm.IsActive);
         }
 
         [TestMethod]
         public void TestSoundAlarm()
         {
-            alarm.SoundAlarm();
-            Assert.IsTrue(alarm.IsActive);
+            _alarm.SoundAlarm();
+            Assert.IsTrue(_alarm.IsActive);
         }
 
         [TestMethod]
         public void TestStopAlarm()
         {
-            alarm.StopAlarm();
-            Assert.IsFalse(alarm.IsActive);
+            _alarm.StopAlarm();
+            Assert.IsFalse(_alarm.IsActive);
         }
 
         [TestMethod]
         public void TestAlarmSwitchOn()
         {
-            alarm.SwitchOn();
-            Assert.IsTrue(alarm.IsOn);
+            _alarm.SwitchOn();
+            Assert.IsTrue(_alarm.IsOn);
         }
 
         [TestMethod]
         public void TestAlarmSwitchOff()
         {
-            alarm.SwitchOff();
-            Assert.IsFalse(alarm.IsOn);
+            _alarm.SwitchOff();
+            Assert.IsFalse(_alarm.IsOn);
         }
     }
 }

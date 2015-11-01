@@ -15,11 +15,11 @@ namespace HomeSecurityControl
 {
     public class SecurityController : ControllerBase
     {
-        protected ICollection<ISensor> _sensors;
-        protected IComms _comms;
-        protected IPowerSupply _powerSupply;
-        protected IAlarm _alarm;
-        protected IDisplay _display;
+        private ICollection<ISensor> _sensors;
+        private IComms _comms;
+        private IPowerSupply _powerSupply;
+        private IAlarm _alarm;
+        private IDisplay _display;
 
         public SecurityController(ICollection<ISensor> sensors, IComms comms, IPowerSupply powerSupply,
             IAlarm alarm, IDisplay display)

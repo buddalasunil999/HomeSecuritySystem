@@ -6,68 +6,40 @@ namespace HomeSecurityControl
 {
     public class MotionSensor : ISensor, IControllable
     {
-        private int _id;
-        private bool _isOn;
-        private bool _detected;
-
         public MotionSensor(int id)
         {
-            _id = id;
+            Id = id;
         }
 
-        public bool Detected
-        {
-            get
-            {
-                return _detected;
-            }
-        }
+        public bool Detected { get; private set; }
 
-        public int Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public int Id { get; }
 
-        public bool IsOn
-        {
-            get
-            {
-                return _isOn;
-            }
-        }
+        public bool IsOn { get; private set; }
 
-        public SensorType Type
-        {
-            get
-            {
-                return SensorType.Motion;
-            }
-        }
+        public SensorType Type => SensorType.Motion;
 
         public event SensorDetectionStateChangeEvent OnDetectionStateChanged;
         
         public void SwitchOn()
         {
-            _isOn = true;
+            IsOn = true;
         }
 
         public void SwitchOff()
         {
-            _isOn = false;
+            IsOn = false;
         }
 
         public void Trigger()
         {
-            _detected = true;
+            Detected = true;
             OnDetectionStateChange();
         }
 
         public void ResetTrigger()
         {
-            _detected = false;
+            Detected = false;
             OnDetectionStateChange();
         }
 

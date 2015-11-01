@@ -7,59 +7,59 @@ namespace HomeSecuritySystem.Test
     [TestClass]
     public class MotionSensorTest
     {
-        MotionSensor sensor = new MotionSensor(2);
+        MotionSensor _sensor = new MotionSensor(2);
 
         [TestMethod]
         public void TestMotionSensorIsOn()
         {
-            Assert.IsFalse(sensor.IsOn);
+            Assert.IsFalse(_sensor.IsOn);
         }
 
         [TestMethod]
         public void TestMotionSensorDetected()
         {
-            Assert.IsFalse(sensor.Detected);
+            Assert.IsFalse(_sensor.Detected);
         }
 
         [TestMethod]
         public void TestMotionSensorId()
         {
-            Assert.IsNotNull(sensor.Id);
-            Assert.AreEqual(2, sensor.Id);
+            Assert.IsNotNull(_sensor.Id);
+            Assert.AreEqual(2, _sensor.Id);
         }
 
         [TestMethod]
         public void TestMotionSensorType()
         {
-            Assert.AreEqual(SensorType.Motion, sensor.Type);
+            Assert.AreEqual(SensorType.Motion, _sensor.Type);
         }
 
         [TestMethod]
         public void TestMotionSensorSwitchOn()
         {
-            sensor.SwitchOn();
-            Assert.IsTrue(sensor.IsOn);
+            _sensor.SwitchOn();
+            Assert.IsTrue(_sensor.IsOn);
         }
 
         [TestMethod]
         public void TestMotionSensorSwitchOff()
         {
-            sensor.SwitchOff();
-            Assert.IsFalse(sensor.IsOn);
+            _sensor.SwitchOff();
+            Assert.IsFalse(_sensor.IsOn);
         }
 
         [TestMethod]
         public void TestMotionSensorTrigger()
         {
-            sensor.Trigger();
-            Assert.IsTrue(sensor.Detected);
+            _sensor.Trigger();
+            Assert.IsTrue(_sensor.Detected);
         }
 
         [TestMethod]
         public void TestMotionSensorResetTrigger()
         {
-            sensor.ResetTrigger();
-            Assert.IsFalse(sensor.Detected);
+            _sensor.ResetTrigger();
+            Assert.IsFalse(_sensor.Detected);
         }
     }
 }

@@ -8,18 +8,15 @@ namespace HomeSecuritySystem.Test
 {
     public class SmokeSensorMock : ISensor, IBatteryPowered
     {
-        private bool _isOn;
-        private bool _isLowBattery;
-
         public SmokeSensorMock(bool isOn)
         {
-            _isOn = isOn;
+            IsOn = isOn;
         }
 
         public SmokeSensorMock(bool isOn, bool isLowBattery)
         {
-            _isOn = isOn;
-            _isLowBattery = isLowBattery;
+            IsOn = isOn;
+            IsLowBattery = isLowBattery;
         }
 
         public bool Detected
@@ -38,21 +35,9 @@ namespace HomeSecuritySystem.Test
             }
         }
 
-        public bool IsLowBattery
-        {
-            get
-            {
-                return _isLowBattery;
-            }
-        }
+        public bool IsLowBattery { get; }
 
-        public bool IsOn
-        {
-            get
-            {
-                return _isOn;
-            }
-        }
+        public bool IsOn { get; }
 
         public SensorType Type
         {

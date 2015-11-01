@@ -4,8 +4,6 @@ namespace HomeSecuritySystem.Test
 {
     public class CommunicationUnitMock : IComms
     {
-        private string _details;
-
         public bool IsOn
         {
             get
@@ -14,17 +12,11 @@ namespace HomeSecuritySystem.Test
             }
         }
 
-        public string Details
-        {
-            get
-            {
-                return _details;
-            }
-        }
+        public string Details { get; private set; }
 
         public void InformSecurity(string detail)
         {
-            _details = detail;
+            Details = detail;
         }
     }
 }

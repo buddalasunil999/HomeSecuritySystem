@@ -5,24 +5,9 @@ namespace HomeSecurityControl
 {
     public class PowerSupply : IPowerSupply
     {
-        private bool _isLowBattery;
-        private bool _isOn;
+        public bool IsLowBattery { get; private set; }
 
-        public bool IsLowBattery
-        {
-            get
-            {
-                return _isLowBattery;
-            }
-        }
-
-        public bool IsOn
-        {
-            get
-            {
-                return _isOn;
-            }
-        }
+        public bool IsOn { get; private set; }
 
         public event NoPowerEvent OnNoPower;
 
@@ -35,23 +20,23 @@ namespace HomeSecurityControl
 
         public void SwitchOn()
         {
-            _isOn = true;
+            IsOn = true;
         }
 
         public void SwitchOff()
         {
-            _isOn = false;
+            IsOn = false;
         }
 
         public void TriggerLowPower()
         {
-            _isLowBattery = true;
+            IsLowBattery = true;
             OnNoPowerEvent();
         }
         
         public void ResetLowPower()
         {
-            _isLowBattery = false;
+            IsLowBattery = false;
         }
     }
 }

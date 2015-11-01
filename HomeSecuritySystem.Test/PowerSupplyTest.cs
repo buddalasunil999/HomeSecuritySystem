@@ -6,46 +6,46 @@ namespace HomeSecuritySystem.Test
     [TestClass]
     public class PowerSupplyTest
     {
-        PowerSupply power = new PowerSupply();
+        PowerSupply _power = new PowerSupply();
 
         [TestMethod]
         public void TestPowerSupply_IsOn()
         {
-            Assert.IsFalse(power.IsOn);
+            Assert.IsFalse(_power.IsOn);
         }
 
         [TestMethod]
         public void TestPowerSupply_IsLowBattery()
         {
-            Assert.IsFalse(power.IsLowBattery);
+            Assert.IsFalse(_power.IsLowBattery);
         }
 
         [TestMethod]
         public void TestPowerSupply_TriggerLowPower()
         {
-            power.TriggerLowPower();
-            Assert.IsTrue(power.IsLowBattery);
+            _power.TriggerLowPower();
+            Assert.IsTrue(_power.IsLowBattery);
         }
 
         [TestMethod]
         public void TestPowerSupply_ResetLowPower()
         {
-            power.ResetLowPower();
-            Assert.IsFalse(power.IsLowBattery);
+            _power.ResetLowPower();
+            Assert.IsFalse(_power.IsLowBattery);
         }
 
         [TestMethod]
         public void TestPowerSupply_SwitchOn()
         {
-            power.SwitchOn();
-            Assert.IsTrue(power.IsOn);
+            _power.SwitchOn();
+            Assert.IsTrue(_power.IsOn);
         }
 
         [TestMethod]
         public void TestPowerSupply_SwitchOff()
         {
-            power.SwitchOff();
-            Assert.IsFalse(power.IsOn);
+            _power.SwitchOff();
+            Assert.IsFalse(_power.IsOn);
         }
     }
 }

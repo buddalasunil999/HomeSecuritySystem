@@ -5,15 +5,7 @@ namespace HomeSecuritySystem.Test
 {
     public class PowerSupplyMock : IPowerSupply
     {
-        bool _isLowBattery;
-
-        public bool IsLowBattery
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsLowBattery { get; }
 
         public bool IsOn
         {
@@ -25,7 +17,7 @@ namespace HomeSecuritySystem.Test
 
         public PowerSupplyMock(bool isLowBattery)
         {
-            _isLowBattery = isLowBattery;
+            IsLowBattery = isLowBattery;
         }
 
         public event NoPowerEvent OnNoPower;
