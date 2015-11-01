@@ -7,56 +7,64 @@ namespace HomeSecuritySystemDemo
 {
     public partial class MainWindow : Window
     {
-        ICollection<ISensor> sensors = new List<ISensor>();
-        SmokeSensor smokeSensor = new SmokeSensor(1);
-        MotionSensor motionSensor = new MotionSensor(2);
-        CommunicationUnit comms = new CommunicationUnit();
-        PowerSupply powerSupply = new PowerSupply();
-        SecurityAlarm alarm = new SecurityAlarm();
-        SecurityController controller;
+        private ICollection<ISensor> _sensors;
+        private SmokeSensor _smokeSensor;
+        private MotionSensor _motionSensor;
+        private CommunicationUnit _comms;
+        private PowerSupply _powerSupply;
+        private SecurityAlarm _alarm;
+        private SecurityController _controller;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            _sensors = new List<ISensor>();
+            _smokeSensor = new SmokeSensor(1);
+            _motionSensor = new MotionSensor(2);
+            _comms = new CommunicationUnit();
+            _powerSupply = new PowerSupply();
+            _alarm = new SecurityAlarm();
+
+            _sensors.Add(_smokeSensor);
+            _sensors.Add(_motionSensor);
+
             rbSmokeSensorOn.IsChecked = true;
             rbMotionSensorOn.IsChecked = true;
+            rbAlarmOn.IsChecked = true;
 
-            sensors.Add(smokeSensor);
-            sensors.Add(motionSensor);
-
-            controller = new SecurityController(sensors, comms,
-            powerSupply, alarm, userDisplay);
+            _controller = new SecurityController(_sensors, _comms,
+            _powerSupply, _alarm, userDisplay);
         }
 
         private void btnTriggerSmokeSensor_Click(object sender, RoutedEventArgs e)
         {
-            smokeSensor.Trigger();
+            _smokeSensor.Trigger();
         }
 
         private void rbSmokeSensorOn_Checked(object sender, RoutedEventArgs e)
         {
-            smokeSensor.SwitchOn();
+            _smokeSensor.SwitchOn();
         }
 
         private void rbSmokeSensorOff_Checked(object sender, RoutedEventArgs e)
         {
-            smokeSensor.SwitchOff();
+            _smokeSensor.SwitchOff();
         }
 
         private void rbMotionSensorOn_Checked(object sender, RoutedEventArgs e)
         {
-            motionSensor.SwitchOn();
+            _motionSensor.SwitchOn();
         }
 
         private void rbMotionSensorOff_Checked(object sender, RoutedEventArgs e)
         {
-            motionSensor.SwitchOff();
+            _motionSensor.SwitchOff();
         }
 
         private void btnTriggerMotionSensor_Click(object sender, RoutedEventArgs e)
         {
-            motionSensor.Trigger();
+            _motionSensor.Trigger();
         }
 
         private void cbArm_Checked(object sender, RoutedEventArgs e)
@@ -67,9 +75,9 @@ namespace HomeSecuritySystemDemo
         private void ArmOrDisarmController()
         {
             if ((bool)cbArm.IsChecked)
-                controller.Arm();
+                _controller.Arm();
             else
-                controller.Disarm();
+                _controller.Disarm();
         }
 
         private void cbArm_Click(object sender, RoutedEventArgs e)
@@ -82,7 +90,7 @@ namespace HomeSecuritySystemDemo
             if ((bool)cbStay.IsChecked)
             {
                 cbArm.IsChecked = true;
-                controller.ArmStay();
+                _controller.ArmStay();
             }
             else
                 ArmOrDisarmController();
@@ -91,9 +99,19 @@ namespace HomeSecuritySystemDemo
         private void cbPowerSupplyOff_Click(object sender, RoutedEventArgs e)
         {
             if ((bool)cbPowerSupplyOff.IsChecked)
-                powerSupply.TriggerLowPower();
+                _powerSupply.TriggerLowPower();
             else
-                powerSupply.ResetLowPower();
+                _powerSupply.ResetLowPower();
+        }
+
+        private void rbAlarmOn_Checked(object sender, RoutedEventArgs e)
+        {
+            _alarm.SwitchOn();
+        }
+
+        private void rbAlarmOff_Checked(object sender, RoutedEventArgs e)
+        {
+            _alarm.SwitchOff();
         }
     }
 }

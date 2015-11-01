@@ -4,8 +4,8 @@ namespace HomeSecurityControl
 {
     public class SecurityAlarm : IAlarm
     {
-        private bool _isActive;
-        private bool _isOn;
+        protected bool _isActive;
+        protected bool _isOn;
 
         public bool IsActive
         {
@@ -31,6 +31,16 @@ namespace HomeSecurityControl
         public void StopAlarm()
         {
             _isActive = false;
+        }
+
+        public void SwitchOn()
+        {
+            _isOn = true;
+        }
+
+        public void SwitchOff()
+        {
+            _isOn = false;
         }
     }
 }

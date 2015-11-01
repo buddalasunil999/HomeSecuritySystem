@@ -64,6 +64,12 @@ namespace HomeSecurityControl
                     lowBatterySensors.Add(sensor.Id);
             }
 
+            if (!_alarm.IsOn)
+            {
+                _display.ShowSystemNotReady();
+                return;
+            }
+
             if (_powerSupply.IsLowBattery)
                 _display.ShowPowerSupplyLowBattery();
             else if (lowBatterySensors.Count > 0)

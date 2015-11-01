@@ -55,7 +55,6 @@
     <Compile Include="SecurityController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmokeSensor.cs" />
-    <Compile Include="SystemDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

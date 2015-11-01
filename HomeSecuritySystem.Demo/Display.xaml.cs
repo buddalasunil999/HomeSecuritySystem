@@ -14,14 +14,17 @@ namespace HomeSecuritySystemDemo
         {
             InitializeComponent();
 
-            _details = new DisplayDetails();
-            _details.DetectedSensors = new List<int>();
-            _details.LowBatterySensors = new List<int>();
-            _details.PowerSupplyLowBattery = false;
-            _details.AlarmSound = false;
-            _details.Armed = false;
-            _details.Stay = false;
-            _details.SystemReady = false;
+            _details = new DisplayDetails
+            {
+                DetectedSensors = new List<int>(),
+                LowBatterySensors = new List<int>(),
+                PowerSupplyLowBattery = false,
+                AlarmSound = false,
+                Armed = false,
+                Stay = false,
+                SystemReady = false
+            };
+
             grid.DataContext = _details;
         }
 

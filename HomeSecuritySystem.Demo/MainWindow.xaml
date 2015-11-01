@@ -8,21 +8,28 @@
         mc:Ignorable="d"
         Title="Home Security System" Height="522.369" Width="859.211">
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="91" Margin="53,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="91" Margin="244,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="88" Margin="244,164,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
-        <Label x:Name="lblSmokeSensor" Content="Smoke Sensor" HorizontalAlignment="Left" Margin="57,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
-        <Label x:Name="lblMotionSensor" Content="Motion Sensor" HorizontalAlignment="Left" Margin="247,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
-        <Label x:Name="lblPowerSupply" Content="Power Supply" HorizontalAlignment="Left" Margin="250,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="102" Margin="53,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="102" Margin="168,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="65" Margin="276,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
+        <Label x:Name="lblSmokeSensor" Content="Smoke Sensor" HorizontalAlignment="Left" Margin="57,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451" FontWeight="Bold"/>
+        <Label x:Name="lblMotionSensor" Content="Motion Sensor" HorizontalAlignment="Left" Margin="171,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451" FontWeight="Bold"/>
+        <Label x:Name="lblPowerSupply" Content="Power Supply" HorizontalAlignment="Left" Margin="282,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451" FontWeight="Bold"/>
         <RadioButton x:Name="rbSmokeSensorOn" Content="On" GroupName="smoke" HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" Checked="rbSmokeSensorOn_Checked"/>
         <RadioButton x:Name="rbSmokeSensorOff" Content="Off" GroupName="smoke" HorizontalAlignment="Left" Margin="100,78,0,0" VerticalAlignment="Top" Checked="rbSmokeSensorOff_Checked"/>
-        <RadioButton x:Name="rbMotionSensorOn" Content="On" GroupName="motion" HorizontalAlignment="Left" Margin="251,79,0,0" VerticalAlignment="Top" Checked="rbMotionSensorOn_Checked"/>
-        <RadioButton x:Name="rbMotionSensorOff" Content="Off" GroupName="motion" HorizontalAlignment="Left" Margin="289,79,0,0" VerticalAlignment="Top" Checked="rbMotionSensorOff_Checked"/>
-        <Button x:Name="btnTriggerSmokeSensor" Content="Trigger" HorizontalAlignment="Left" Margin="62,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerSmokeSensor_Click"/>
-        <Button x:Name="btnTriggerMotionSensor" Content="Trigger" HorizontalAlignment="Left" Margin="251,100,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerMotionSensor_Click"/>
-        <CheckBox x:Name="cbPowerSupplyOff" Content="BlackOut" HorizontalAlignment="Left" Margin="251,213,0,0" VerticalAlignment="Top" Click="cbPowerSupplyOff_Click"/>
-        <CheckBox x:Name="cbArm" Content="Arm" HorizontalAlignment="Left" Margin="57,176,0,0" VerticalAlignment="Top" Click="cbArm_Click"/>
-        <CheckBox x:Name="cbStay" Content="Stay" HorizontalAlignment="Left" Margin="57,196,0,0" VerticalAlignment="Top" Click="cbStay_Click"/>
-        <local:Display x:Name="userDisplay" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top" Height="355" Width="400"/>
+        <RadioButton x:Name="rbMotionSensorOn" Content="On" GroupName="motion" HorizontalAlignment="Left" Margin="175,79,0,0" VerticalAlignment="Top" Checked="rbMotionSensorOn_Checked"/>
+        <RadioButton x:Name="rbMotionSensorOff" Content="Off" GroupName="motion" HorizontalAlignment="Left" Margin="213,79,0,0" VerticalAlignment="Top" Checked="rbMotionSensorOff_Checked"/>
+        <Button x:Name="btnTriggerSmokeSensor" Content="Trigger" HorizontalAlignment="Left" Margin="62,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerSmokeSensor_Click" Height="31"/>
+        <Button x:Name="btnTriggerMotionSensor" Content="Trigger" HorizontalAlignment="Left" Margin="175,100,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.095,-0.605" Click="btnTriggerMotionSensor_Click" Height="30"/>
+        <CheckBox x:Name="cbPowerSupplyOff" Content="BlackOut" HorizontalAlignment="Left" Margin="283,78,0,0" VerticalAlignment="Top" Click="cbPowerSupplyOff_Click"/>
+        <CheckBox x:Name="cbArm" Content="Arm" HorizontalAlignment="Left" Margin="114,176,0,0" VerticalAlignment="Top" Click="cbArm_Click"/>
+        <CheckBox x:Name="cbStay" Content="Stay" HorizontalAlignment="Left" Margin="168,176,0,0" VerticalAlignment="Top" Click="cbStay_Click"/>
+
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="276,117,0,0" Stroke="Black" VerticalAlignment="Top" Width="93"/>
+        <Label x:Name="lblAlarm" Content="Alarm" HorizontalAlignment="Left" Margin="301,122,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.03,0.451" FontWeight="Bold"/>
+        <RadioButton x:Name="rbAlarmOn" Content="On" GroupName="alarm" HorizontalAlignment="Left" Margin="286,146,0,0" VerticalAlignment="Top" Checked="rbAlarmOn_Checked"/>
+        <RadioButton x:Name="rbAlarmOff" Content="Off" GroupName="alarm" HorizontalAlignment="Left" Margin="324,146,0,0" VerticalAlignment="Top" Checked="rbAlarmOff_Checked"/>
+        <GroupBox x:Name="groupBox" Header="Display" HorizontalAlignment="Left" Margin="400,39,0,0" VerticalAlignment="Top" Height="432" Width="426">
+            <local:Display x:Name="userDisplay" HorizontalAlignment="Left" Margin="6,1,0,0" VerticalAlignment="Top" Height="355" Width="400"/>
+        </GroupBox>
     </Grid>
 </Window>
