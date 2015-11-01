@@ -20,10 +20,15 @@ namespace HomeSecurityControl
         private IPowerSupply _powerSupply;
         private IAlarm _alarm;
         private IDisplay _display;
+        public ITimer SystemCheckTimer { get; set; }
+        
+        public SecurityController(ICollection<ISensor> sensors, IComms comms, IPowerSupply powerSupply,
+            IAlarm alarm, IDisplay display) : this(sensors, comms, powerSupply, alarm, display, new TimerAdaper(3000))
+        {
+        }
 
         public SecurityController(ICollection<ISensor> sensors, IComms comms, IPowerSupply powerSupply,
-            IAlarm alarm, IDisplay display)
-            : base(sensors, comms, powerSupply, alarm, display)
+            IAlarm alarm, IDisplay display, ITimer timer) : base(sensors, comms, powerSupply, alarm, display)
         {
             _sensors = sensors;
             _comms = comms;
@@ -41,25 +46,25 @@ namespace HomeSecurityControl
 
             SystemCheck();
 
-            Timer timer = new Timer(3000);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Enabled = true;
+            SystemCheckTimer = timer;
+            SystemCheckTimer.Elapsed += Timer_Elapsed;
+            SystemCheckTimer.Enabled = true;
         }
 
         public override void SystemCheck()
         {
-            List<int> lowBatterySensors = new List<int>();
+            var lowBatterySensors = new List<int>();
 
             foreach (ISensor sensor in _sensors)
             {
-                IPowered powredSensor = sensor as IPowered;
+                var powredSensor = sensor as IPowered;
                 if (powredSensor != null && !powredSensor.IsOn)
                 {
                     _display.ShowSystemNotReady();
                     return;
                 }
 
-                IBatteryPowered batteryPoweredSensor = sensor as IBatteryPowered;
+                var batteryPoweredSensor = sensor as IBatteryPowered;
                 if (batteryPoweredSensor != null && batteryPoweredSensor.IsLowBattery)
                     lowBatterySensors.Add(sensor.Id);
             }
@@ -101,11 +106,13 @@ namespace HomeSecurityControl
         private void PowerSupply_OnNoPower()
         {
             _display.ShowPowerSupplyLowBattery();
-            Report report = new Report();
-            report.Type = ReportType.NoPower;
-            report.Time = DateTime.Now;
+            var report = new Report
+            {
+                Type = ReportType.NoPower,
+                Time = DateTime.Now
+            };
 
-            string details = ConvertToJSON(report);
+            string details = ConvertToJson(report);
             _comms.InformSecurity(details);
             _display.ShowSentReport(details);
         }
@@ -115,28 +122,30 @@ namespace HomeSecurityControl
             _alarm.SoundAlarm();
             _display.ShowAlarmSound();
 
-            Report report = new Report();
-            report.SensorId = sensor.Id;
-            report.SensorType = sensor.Type;
-            report.Type = GetReportType(sensor.Type);
-            report.Time = DateTime.Now;
+            var report = new Report
+            {
+                SensorId = sensor.Id,
+                SensorType = sensor.Type,
+                Type = GetReportType(sensor.Type),
+                Time = DateTime.Now
+            };
 
-            string details = ConvertToJSON(report);
+            string details = ConvertToJson(report);
             _comms.InformSecurity(details);
             _display.ShowSentReport(details);
         }
-        
+
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             SystemCheck();
         }
 
-        public static string ConvertToJSON(object obj)
+        public static string ConvertToJson(object obj)
         {
             return JsonConvert.SerializeObject(obj);
         }
 
-        public static T DeserializeJSON<T>(string value)
+        public static T DeserializeJson<T>(string value)
         {
             return JsonConvert.DeserializeObject<T>(value);
         }

@@ -65,6 +65,7 @@
     <Compile Include="SmokeSensorTest.cs" />
     <Compile Include="MotionSensorTest.cs" />
     <Compile Include="SecurityAlarmTest.cs" />
+    <Compile Include="TimerMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HomeSecuritySystem\HomeSecuritySystem.csproj">

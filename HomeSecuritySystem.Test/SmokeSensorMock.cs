@@ -6,32 +6,26 @@ using HomeSecuritySystem.Base;
 
 namespace HomeSecuritySystem.Test
 {
-    public class SmokeSensorMock : ISensor, IBatteryPowered
+    public class BatteryPoweredSensorMock : ISensor, IBatteryPowered
     {
-        public SmokeSensorMock(bool isOn)
+        public BatteryPoweredSensorMock(bool isOn)
         {
             IsOn = isOn;
         }
 
-        public SmokeSensorMock(bool isOn, bool isLowBattery)
+        public BatteryPoweredSensorMock(bool isOn, bool isLowBattery)
         {
             IsOn = isOn;
             IsLowBattery = isLowBattery;
         }
 
-        public bool Detected
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public bool Detected { get; }
 
         public int Id
         {
             get
             {
-                return 1;
+                return 10;
             }
         }
 
@@ -43,7 +37,7 @@ namespace HomeSecuritySystem.Test
         {
             get
             {
-                throw new NotImplementedException();
+                return SensorType.Gas;
             }
         }
 
